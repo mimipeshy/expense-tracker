@@ -38,6 +38,6 @@ class ReviewsController < ApplicationController
   end
 
   def set_review
-    @review = Review.find(params[:book_id])
+    @review = Review.find(params[:id])
   end
 end

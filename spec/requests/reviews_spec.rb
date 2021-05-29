@@ -1,128 +1,88 @@
-# spec/requests/items_spec.rb
+# spec/requests/reviews_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Reviews API' do
   # Initialize the test data
-  # let!(:todo) { create(:todo) }
-  # let!(:items) { create_list(:item, 20, todo_id: todo.id) }
-  # let(:todo_id) { todo.id }
-  # let(:id) { items.first.id }
+  let!(:book) { create(:book) }
+  let!(:review) { create_list(:review, 1, book_id: book.id) }
+  let(:book_id) { book.id }
+  let(:id) { review.first.id }
 
-  # # Test suite for GET /todos/:todo_id/items
-  # describe 'GET /todos/:todo_id/items' do
-  #   before { get "/todos/#{todo_id}/items" }
+  # Test suite for GET /books/:book_id/reviews
+  describe 'GET /reviews/:book_id/' do
+    before { get "/reviews/#{book_id}" }
 
-  #   context 'when todo exists' do
-  #     it 'returns status code 200' do
-  #       expect(response).to have_http_status(200)
-  #     end
+    context 'when book exists' do
+      it 'returns all book reviews' do
+        expect(json.size).to eq(1)
+      end
+    end
 
-  #     it 'returns all todo items' do
-  #       expect(json.size).to eq(20)
-  #     end
-  #   end
+    context 'when book does not exist' do
+      let(:book_id) { 0 }
 
-  #   context 'when todo does not exist' do
-  #     let(:todo_id) { 0 }
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
 
-  #     it 'returns status code 404' do
-  #       expect(response).to have_http_status(404)
-  #     end
+      it 'returns a not found message' do
+        expect(response.body).to match(/Couldn't find Review with 'id'=0/)
+      end
+    end
+  end
+  # Test suite for PUT /reviews
+  describe 'POST /reviews/' do
+    let(:valid_attributes) { { title: 'Visit Narnia', description:"not a nice book", score: 2, book_id:1 } }
 
-  #     it 'returns a not found message' do
-  #       expect(response.body).to match(/Couldn't find Todo/)
-  #     end
-  #   end
-  # end
+    context 'when an invalid request' do
+      before { post "/reviews/", params: { title: 'Foobar' } }
 
-  # # Test suite for GET /todos/:todo_id/items/:id
-  # describe 'GET /todos/:todo_id/items/:id' do
-  #   before { get "/todos/#{todo_id}/items/#{id}" }
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
 
-  #   context 'when todo item exists' do
-  #     it 'returns status code 200' do
-  #       expect(response).to have_http_status(200)
-  #     end
+      it 'returns a failure message' do
+        expect(response.body).to match(/Validation failed: Book must exist, Description can't be blank, Score can't be blank/)
+      end
+    end
+  end
 
-  #     it 'returns the item' do
-  #       expect(json['id']).to eq(id)
-  #     end
-  #   end
+  # Test suite for PUT /reviews/:id
+  describe 'PUT /reviews/:id/' do
+    let(:valid_attributes) { { title: 'Mozart' } }
 
-  #   context 'when todo item does not exist' do
-  #     let(:id) { 0 }
+    before { put "/reviews/#{id}", params: valid_attributes }
 
-  #     it 'returns status code 404' do
-  #       expect(response).to have_http_status(404)
-  #     end
+    context 'when item exists' do
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
 
-  #     it 'returns a not found message' do
-  #       expect(response.body).to match(/Couldn't find Item/)
-  #     end
-  #   end
-  # end
+      it 'updates the item' do
+        updated_review = Review.find(id)
+        expect(updated_review.title).to match(/Mozart/)
+      end
+    end
 
-  # # Test suite for PUT /todos/:todo_id/items
-  # describe 'POST /todos/:todo_id/items' do
-  #   let(:valid_attributes) { { name: 'Visit Narnia', done: false } }
+    context 'when the item does not exist' do
+      let(:id) { 0 }
 
-  #   context 'when request attributes are valid' do
-  #     before { post "/todos/#{todo_id}/items", params: valid_attributes }
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
 
-  #     it 'returns status code 201' do
-  #       expect(response).to have_http_status(201)
-  #     end
-  #   end
+      it 'returns a not found message' do
+        expect(response.body).to match(/Couldn't find Review with 'id'=0/)
+      end
+    end
+  end
 
-  #   context 'when an invalid request' do
-  #     before { post "/todos/#{todo_id}/items", params: {} }
+  # Test suite for DELETE /reviews/:id
+  describe 'DELETE /reivews/:id' do
+    before { delete "/reviews/#{id}" }
 
-  #     it 'returns status code 422' do
-  #       expect(response).to have_http_status(422)
-  #     end
-
-  #     it 'returns a failure message' do
-  #       expect(response.body).to match(/Validation failed: Name can't be blank/)
-  #     end
-  #   end
-  # end
-
-  # # Test suite for PUT /todos/:todo_id/items/:id
-  # describe 'PUT /todos/:todo_id/items/:id' do
-  #   let(:valid_attributes) { { name: 'Mozart' } }
-
-  #   before { put "/todos/#{todo_id}/items/#{id}", params: valid_attributes }
-
-  #   context 'when item exists' do
-  #     it 'returns status code 204' do
-  #       expect(response).to have_http_status(204)
-  #     end
-
-  #     it 'updates the item' do
-  #       updated_item = Item.find(id)
-  #       expect(updated_item.name).to match(/Mozart/)
-  #     end
-  #   end
-
-  #   context 'when the item does not exist' do
-  #     let(:id) { 0 }
-
-  #     it 'returns status code 404' do
-  #       expect(response).to have_http_status(404)
-  #     end
-
-  #     it 'returns a not found message' do
-  #       expect(response.body).to match(/Couldn't find Item/)
-  #     end
-  #   end
-  # end
-
-  # # Test suite for DELETE /todos/:id
-  # describe 'DELETE /todos/:id' do
-  #   before { delete "/todos/#{todo_id}/items/#{id}" }
-
-  #   it 'returns status code 204' do
-  #     expect(response).to have_http_status(204)
-  #   end
-  # end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
 end
