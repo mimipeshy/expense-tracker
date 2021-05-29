@@ -32,7 +32,7 @@ RSpec.describe 'Reviews API' do
   end
   # Test suite for PUT /reviews
   describe 'POST /reviews/' do
-    let(:valid_attributes) { { title: 'Visit Narnia', description:"not a nice book", score: 2, book_id:1 } }
+    let(:valid_attributes) { { title: 'Visit Narnia', description: "not a nice book", score: 2, book_id: 1 } }
 
     context 'when an invalid request' do
       before { post "/reviews/", params: { title: 'Foobar' } }

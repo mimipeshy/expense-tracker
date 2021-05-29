@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :set_book, only: [:show, :update, :destroy]
+  before_action :set_book, only: [:show, :update, :destroy]
 
   # GET /books
   def index
@@ -27,14 +27,14 @@ class BooksController < ApplicationController
   # DELETE /books/:id
   def destroy
     @book.destroy
-    head :no_content    
+    head :no_content
   end
 
   private
 
   def book_params
     # whitelist params
-    params.permit(:name,:image_url, :author)
+    params.permit(:name, :image_url, :author)
   end
 
   def set_book

@@ -21,7 +21,7 @@ gem 'puma', '~> 5.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-
+gem 'rubocop'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -34,7 +34,7 @@ end
 # Gemfile
 group :test do
   gem 'factory_bot_rails', '~> 4.0'
-  gem 'shoulda-matchers', '~> 4.5', '>= 4.5.1' 
+  gem 'shoulda-matchers', '~> 4.5', '>= 4.5.1'
   gem 'database_cleaner'
 end
 
