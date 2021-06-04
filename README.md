@@ -1,4 +1,4 @@
-# Rails Book Rating
+# Rails Expense Tracker
 
 > This is the final  Capstone project in Microverse's curriculum, to build a Ruby on Rails application where people can track their expenses. Find it the project description [here](https://www.notion.so/Final-Capstone-Project-Tracking-App-22e454da738c46efaf17721826841772#57ce8fa8369a473aa0cf7936184f841c).
 
