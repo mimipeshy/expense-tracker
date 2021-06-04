@@ -1,10 +1,10 @@
 # Rails Book Rating
 
-> This is the final  Capstone project in Microverse's curriculum, to build a Ruby on Rails application where people can track items. I customized it to track the number of reviews a book gets, this is to promote a reading culture in our century. Find it the project description [here](https://www.notion.so/Final-Capstone-Project-Tracking-App-22e454da738c46efaf17721826841772#57ce8fa8369a473aa0cf7936184f841c).
+> This is the final  Capstone project in Microverse's curriculum, to build a Ruby on Rails application where people can track their expenses. Find it the project description [here](https://www.notion.so/Final-Capstone-Project-Tracking-App-22e454da738c46efaf17721826841772#57ce8fa8369a473aa0cf7936184f841c).
 
-> This website is created to allow users to view, create, update, and write revies of their favorite books. 
+> This website is created to allow users to view, create, update their expenses. 
 
-# See the Live version here - > [Live Link](https://stark-garden-17635.herokuapp.com/)
+# See the Live version here - > [Live Link](https://peris-expense-track.herokuapp.com/)
 
 ### Index Page
 <img src="app/assets/images/screenshot2.png" width="auto" height="auto" />
