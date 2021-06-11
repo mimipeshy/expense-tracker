@@ -4,13 +4,7 @@
 
 > This website is created to allow users to view, create, update their expenses. 
 
-# See the Live version here - > [Live Link](https://peris-expense-track.herokuapp.com/)
-
-### Index Page
-<img src="app/assets/images/screenshot2.png" width="auto" height="auto" />
-
-### Categories Page
-<img src="app/assets/images/screenshot.png" width="auto" height="auto" />
+## See the API version here - > [Live Link](https://peris-expense-track.herokuapp.com/)
 
 # Built With
 
