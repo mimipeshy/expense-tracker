@@ -1,7 +1,7 @@
 # spec/requests/users_spec.rb
 require 'rails_helper'
 
-RSpec.describe 'Users API', type: :request do
+RSpec.describe UsersController, type: :request do
   # initialize test data
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
@@ -53,7 +53,7 @@ RSpec.describe 'Users API', type: :request do
   # Test suite for POST /users
   describe 'POST /users' do
     # valid payload
-    let(:valid_attributes) { { username: 'ndanu'} }
+    let(:valid_attributes) { { username: 'ndanu' } }
 
     context 'when the request is valid' do
       before { post '/users', params: valid_attributes }
@@ -91,7 +91,6 @@ RSpec.describe 'Users API', type: :request do
       it 'updates the record the user' do
         expect(json['username']).to eq('peshyndanu')
       end
-
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
