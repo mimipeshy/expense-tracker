@@ -1,3 +1,4 @@
+require 'database_cleaner'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
