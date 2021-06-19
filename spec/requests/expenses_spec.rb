@@ -32,10 +32,10 @@ RSpec.describe ExpensesController, type: :request do
   end
   # Test suite for POST /expenses
   describe 'POST /expenses' do
-    let(:valid_attributes) { { name: 'Visit', amount: "300", date: "2021/6/19", user_id: 3 } }
+    let(:valid_attributes) { { name: 'Visit', amount: 300, date: '2021/6/19', user_id: 3 } }
 
     context 'when an invalid request' do
-      before { post "/expenses", params: { name: 'Foobar' } }
+      before { post '/expenses', params: { name: 'Foobar' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
