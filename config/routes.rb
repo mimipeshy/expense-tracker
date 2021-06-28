@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
-    resources :expenses
+  resources :users do
+    resources :expenses do
       resources :measurements
-
+    end
+  end
 end
