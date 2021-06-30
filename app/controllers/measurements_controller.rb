@@ -1,52 +1,41 @@
 class MeasurementsController < ApplicationController
-  before_action :set_measurement, only: %i[show update destroy]
+  before_action :set_expense
+  before_action :set_expense_measurement, only: %i[show update destroy]
 
-  # GET /measurements
   def index
-    @measurements = Measurement.all
-
-    render json: @measurements
+    json_response(@expense.measurements)
   end
 
-  # GET /measurements/1
   def show
-    render json: @measurement
+    json_response(@measurement)
   end
 
-  # POST /measurements
   def create
-    @measurement = Measurement.new(measurement_params)
-
-    if @measurement.save
-      render json: @measurement, status: :created, location: @measurement
-    else
-      render json: @measurement.errors, status: :unprocessable_entity
-    end
+    @expense.measurements.create!(measurement_params)
+    json_response(@expense, :created)
   end
 
-  # PATCH/PUT /measurements/1
   def update
-    if @measurement.update(measurement_params)
-      render json: @measurement
-    else
-      render json: @measurement.errors, status: :unprocessable_entity
-    end
+    @measurement.update(measurement_params)
+    json_response(@expense, :updated)
   end
 
-  # DELETE /measurements/1
   def destroy
     @measurement.destroy
+    head :no_content
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_measurement
-    @measurement = Measurement.find(params[:id])
+  def measurement_params
+    params.permit(:amount, :date)
   end
 
-  # Only allow a list of trusted parameters through.
-  def measurement_params
-    params.permit(:amount, :date, :expense_id)
+  def set_expense
+    @expense = Expense.find(params[:expense_id])
+  end
+
+  def set_expense_measurement
+    @measurement = @expense.measurements.find_by!(id: params[:id]) if @expense
   end
 end

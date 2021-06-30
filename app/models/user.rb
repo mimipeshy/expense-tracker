@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :expenses
   # encrypt password
   has_secure_password
   # Validations
