@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:username) }
-  end
+  # Association test
+  # ensure User model has a 1:m relationship with the Todo model
 
-  describe 'associations' do
-    it { should have_many :expenses }
-  end
+  # Validation tests
+  it { should validate_presence_of(:username) }
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:password) }
 end
