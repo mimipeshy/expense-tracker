@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :expenses
-  validates :username, presence: true, uniqueness: true, length: { minimum: 4,
-                                                                   too_short: 'username can be minimum of 4 characters long.' }
+  # encrypt password
+  has_secure_password
+  # Validations
+  validates_presence_of :username, :password_digest, :email
+  validates :email, :uniqueness => true
 end
