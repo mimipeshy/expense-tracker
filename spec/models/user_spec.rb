@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:subject) do
     described_class.new(
-      username: 'Tadeu'
+      username: 'Peshy'
     )
   end
 

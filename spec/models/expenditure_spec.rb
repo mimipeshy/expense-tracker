@@ -16,17 +16,17 @@ RSpec.describe Expenditure, type: :model do
     # VALUE TESTING
 
     it "expects the subject to be invalid for it doesn't have a value" do
-      subject.date = '2021/04/14'
+      subject.date = '2021/07/05'
       subject.value = nil
-      subject.description = "This is some expenditure decription, so we're just making some big text."
+      subject.description = "Am just tsting the sample"
       subject.category = 1
       subject.user_id = test_user.id
       expect(subject).not_to be_valid
     end
 
     it "expects the subject to be invalid for it doesn't have a value" do
-      subject.date = '2021/04/14'
-      subject.value = 'Hola me llamo Tadeu'
+      subject.date = '2021/07/05'
+      subject.value = 'this is invalid'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
       subject.user_id = test_user.id
@@ -45,7 +45,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it "expects the subject to be invalid for its date's format is not correct 1" do
-      subject.date = 'Hola me llamo Tadeu'
+      subject.date = 'this is invalid'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -54,7 +54,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it "expects the subject to be invalid for its date's format is not correct 2" do
-      subject.date = '04-14-2021'
+      subject.date = '05-14-2021'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -65,7 +65,7 @@ RSpec.describe Expenditure, type: :model do
     # DESCRIPTION TESTING
 
     it "expects the subject to be invalid for it doesn't have a description" do
-      subject.date = '2021/04/14'
+      subject.date = '2021/07/05'
       subject.value = '10'
       subject.description = nil
       subject.category = 1
@@ -74,7 +74,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be invalid for its description is too short' do
-      subject.date = '2021/04/14'
+      subject.date = '2021/07/05'
       subject.value = '10'
       subject.description = '123456789'
       subject.category = 1
@@ -85,7 +85,7 @@ RSpec.describe Expenditure, type: :model do
     # EXPENSE ID TESTING
 
     it "expects the subject to be invalid for it doesn't have a expense id" do
-      subject.date = '20200414'
+      subject.date = '20200705'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = nil
@@ -93,17 +93,17 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be invalid for it has an invalid expense id' do
-      subject.date = '20200414'
+      subject.date = '20200705'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
-      subject.category = 'Hola me llamo Tadeu'
+      subject.category = 'this is a category'
       expect(subject).not_to be_valid
     end
 
     # USER ID TESTING
 
     it "expects the subject to be invalid for it doesn't have a user id" do
-      subject.date = '20200414'
+      subject.date = '20200705'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -112,18 +112,18 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be invalid for it has an invalid user id' do
-      subject.date = '20200414'
+      subject.date = '20200705'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
-      subject.user_id = 'Hola me llamo Tadeu'
+      subject.user_id = 'invalid user'
       expect(subject).not_to be_valid
     end
 
     # WORKING CASES
 
     it 'expects the subject to be valid 1' do
-      subject.date = '20200414'
+      subject.date = '20200705'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -132,7 +132,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be valid 2' do
-      subject.date = '2020/04/14'
+      subject.date = '2020/07/05'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -141,7 +141,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be valid 3' do
-      subject.date = '2020-04-14'
+      subject.date = '2020-07-05'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1
@@ -150,7 +150,7 @@ RSpec.describe Expenditure, type: :model do
     end
 
     it 'expects the subject to be valid 4' do
-      subject.date = '14-04-2021'
+      subject.date = '05-07-2021'
       subject.value = '10'
       subject.description = "This is some expenditure decription, so we're just making some big text."
       subject.category = 1

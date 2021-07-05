@@ -6,10 +6,10 @@ DatabaseCleaner.strategy = :truncation
 RSpec.describe 'Users', type: :request do
   describe 'request a single user' do
     DatabaseCleaner.clean
-    let(:test_user) { User.create(username: 'Maria', target: 3000) }
+    let(:test_user) { User.create(username: 'Theo', target: 3000) }
 
     it 'expects to return 200' do
-      get '/users/Maria'
+      get '/users/Theo'
       expect(response.status).to equal(404)
     end
   end
@@ -18,12 +18,12 @@ RSpec.describe 'Users', type: :request do
     DatabaseCleaner.clean
 
     it 'expects to return 200' do
-      post '/users', params: { user: { username: 'Tadeu', target: 1000 } }
+      post '/users', params: { user: { username: 'Peshy', target: 1000 } }
       expect(response.status).to equal(200)
     end
 
     it 'expects not to return 200 1' do
-      post '/users', params: { user: { username: 'Tadeu' } }
+      post '/users', params: { user: { username: 'Peshy' } }
       expect(response.status).not_to equal(200)
     end
 
@@ -35,7 +35,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'update a user' do
     DatabaseCleaner.clean
-    user = User.new(username: 'Rogerio', target: 3000)
+    user = User.new(username: 'Peris', target: 3000)
     user.save
 
     it 'expects to return 200' do
