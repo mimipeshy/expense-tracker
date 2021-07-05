@@ -18,7 +18,7 @@ RSpec.describe Expenditure, type: :model do
     it "expects the subject to be invalid for it doesn't have a value" do
       subject.date = '2021/07/05'
       subject.value = nil
-      subject.description = "Am just tsting the sample"
+      subject.description = 'Am just tsting the sample'
       subject.category = 1
       subject.user_id = test_user.id
       expect(subject).not_to be_valid

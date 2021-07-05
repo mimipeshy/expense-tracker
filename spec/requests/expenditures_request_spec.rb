@@ -35,5 +35,4 @@ RSpec.describe 'Expenditures', type: :request do
       expect(response.status).to equal(200)
     end
   end
-
 end
